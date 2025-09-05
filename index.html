@@ -5,8 +5,425 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAK ZONE - Riparazioni Smartphone e Servizi - Ancona</title>
     <meta name="description" content="PAK ZONE ad Ancona: riparazioni smartphone, money transfer, ricariche, bollettini, fotocopie e molto altro. Corso Carlo Alberto 68.">
-    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu li a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .phone-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .phone-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .reviews-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+        }
+
+        .reviews-badge i {
+            color: #ffd700;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .hours .day {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hours .day.closed span:last-child {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .directions-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1rem auto 0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .directions-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        /* Services */
+        .services {
+            padding: 4rem 0;
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .services h3 {
+            margin: 2rem 0 1rem;
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+
+        .services-grid, .additional-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-item i {
+            font-size: 1.5rem;
+            color: #667eea;
+            min-width: 30px;
+        }
+
+        .service-promise {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .service-promise p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .map-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Reviews */
+        .reviews {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .reviews h2 {
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .reviews-summary {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .stars {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .reviews-summary p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .view-reviews-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .view-reviews-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .google-embed {
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3, .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li a {
+                padding: 12px 16px;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid, .additional-services {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll offset for fixed header */
+        section {
+            scroll-margin-top: 80px;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -14,6 +431,21 @@
         <div class="container">
             <div class="header-content">
                 <h1 class="logo">PAK ZONE</h1>
+                
+                <!-- Navigation Menu -->
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#info">Info</a></li>
+                        <li><a href="#servizi">Servizi</a></li>
+                        <li><a href="#mappa">Dove Siamo</a></li>
+                        <li><a href="#recensioni">Recensioni</a></li>
+                    </ul>
+                    <button class="mobile-menu-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+                
                 <div class="contact-info">
                     <a href="tel:3533751655" class="phone-btn">
                         <i class="fas fa-phone"></i>
@@ -25,21 +457,21 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
                 <h2>Il tuo punto di riferimento ad Ancona</h2>
                 <p>Riparazioni smartphone, servizi digitali e molto altro</p>
                 <div class="reviews-badge">
                     <i class="fas fa-star"></i>
-                    <span id="review-count">5,040</span> recensioni Google
+                    <span>5,040</span> recensioni Google
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Info Cards -->
-    <section class="info-cards">
+    <section id="info" class="info-cards">
         <div class="container">
             <div class="cards-grid">
                 <div class="card">
@@ -61,17 +493,17 @@
                     <i class="fas fa-map-marker-alt"></i>
                     <h3>Dove Siamo</h3>
                     <p>Corso Carlo Alberto, 68<br>60127 Ancona AN</p>
-                    <button class="directions-btn" onclick="openDirections()">
+                    <a href="https://maps.app.goo.gl/CHQ8cLXorbCZrt2P8" target="_blank" class="directions-btn">
                         <i class="fas fa-directions"></i>
                         Indicazioni
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services">
+    <section id="servizi" class="services">
         <div class="container">
             <h2>📌 I nostri servizi</h2>
             <div class="services-grid">
@@ -129,25 +561,24 @@
     </section>
 
     <!-- Map Section -->
-    <section class="map-section">
+    <section id="mappa" class="map-section">
         <div class="container">
             <h2>Vieni a trovarci</h2>
             <div class="map-container">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.1234567890123!2d13.5123456789!3d43.6123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCorso%20Carlo%20Alberto%2C%2068%2C%2060127%20Ancona%20AN!5e0!3m2!1sit!2sit!4v1234567890123"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.123!2d13.5186!3d43.6155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d7fb89c5a8b1b%3A0x123456789!2sCorso%20Carlo%20Alberto%2C%2068%2C%2060127%20Ancona%20AN!5e0!3m2!1sit!2sit!4v1234567890"
                     width="100%" 
                     height="300" 
                     style="border:0;" 
                     allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
+                    loading="lazy">
                 </iframe>
             </div>
         </div>
     </section>
 
     <!-- Reviews Section -->
-    <section class="reviews">
+    <section id="recensioni" class="reviews">
         <div class="container">
             <h2>Cosa dicono i nostri clienti</h2>
             <div class="reviews-summary">
@@ -158,9 +589,26 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                 </div>
-                <p><span id="review-count-2">5,040</span> recensioni su Google Maps</p>
-                <a href="https://www.google.com/maps/place/PAK+ZONE/@43.6123456,13.5123456,17z" target="_blank" class="view-reviews-btn">
-                    Vedi tutte le recensioni
+                <p>Oltre <strong>5,000</strong> recensioni positive su Google</p>
+                
+                <!-- Google Reviews Embed -->
+                <div class="google-embed">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.123!2d13.5186!3d43.6155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d43.6155!2d13.5186!6m1!1e1"
+                        width="100%" 
+                        height="200"
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                
+                <a href="https://maps.app.goo.gl/CHQ8cLXorbCZrt2P8" target="_blank" class="view-reviews-btn">
+                    📱 Leggi tutte le recensioni
+                </a>
+                
+                <a href="https://maps.app.goo.gl/CHQ8cLXorbCZrt2P8" target="_blank" class="view-reviews-btn">
+                    ⭐ Lascia una recensione
                 </a>
             </div>
         </div>
@@ -184,6 +632,10 @@
                     <p>Lun - Sab: 8:30 - 20:00</p>
                     <p>Domenica: Chiuso</p>
                 </div>
+                <div class="footer-section">
+                    <h4>Seguici</h4>
+                    <p><a href="https://maps.app.goo.gl/CHQ8cLXorbCZrt2P8" target="_blank" style="color: #667eea;">📍 Google Maps</a></p>
+                </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 PAK ZONE. Tutti i diritti riservati.</p>
@@ -191,6 +643,33 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+            
+            const icon = this.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navMenu = document.getElementById('navMenu');
+                const toggle = document.getElementById('mobileToggle');
+                
+                navMenu.classList.remove('active');
+                toggle.querySelector('i').classList.remove('fa-times');
+                toggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+    </script>
 </body>
 </html>
